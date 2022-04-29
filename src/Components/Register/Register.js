@@ -55,10 +55,10 @@ const Register = () => {
 
       <p className="mt-3">Already have an account ? <Link to='/login' onClick={navigateRegister} className="text-danger text-decoration-none">Login</Link> </p>
         {
-            error && <p>Please give valid mail and password</p>
+            error && <p className="text-danger">Please give valid mail and password</p>
         }
         {
-            loading && <p>Loading......</p>
+            loading && <p className="text-primary">Loading......</p>
         }
     </Form>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import {Card} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
   const { name, price, img, des, quantity, supplier } = product;
@@ -12,7 +13,7 @@ const Product = ({ product }) => {
           {des} <br /> <span className="fw-bold">Price: {price}$</span> <br /> <span className="fw-bold">Supplier: {supplier}</span> <br /> <span>Quantity: {quantity}</span>
         </Card.Text>
       </Card.Body>
-        <button className="btn btn-primary w-100 mt-2 mb-2">UPDATE</button>
+      <Link to='/inventory'><button className="btn btn-primary w-100 mt-2 mb-2">UPDATE</button></Link>
     </Card>
   );
 };

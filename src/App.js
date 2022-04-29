@@ -7,6 +7,8 @@ import Home from './Components/Home/Home';
 import Banner from './Components/Banner/Banner';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
+import Inventory from './Components/Inventory/Inventory';
+import RequireAuth from './Components/Login/RequireAuth';
 
 function App() {
   return (
@@ -19,6 +21,11 @@ function App() {
         <Route path='/products' element={<Products></Products>}/>
         <Route path='/login' element={<Login></Login>}/>
         <Route path='/register' element={<Register></Register>}/>
+        <Route path='/inventory' element={
+          <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
+        }/>
       </Routes>
     </div>
   );
