@@ -20,18 +20,18 @@ const Feature = () => {
                 <h2>Featured Category</h2>
                 <p>Get Your Desired Product from Featured Category!</p>
             </div>
-            <div data-aos="fade-up-right" className='text-center d-flex justify-content-center gap-5'>
-            <div className='border p-3 bg-white rounded shadow'>
+            <div data-aos="fade-up-right" className='text-center d-flex justify-content-center gap-5 mx-auto'>
+            <div data-aos="fade-down" className='border p-3 bg-white rounded shadow'>
                 <h3>Graphics Card</h3>
                 <img src={one} alt="" />
             </div>
                 
-            <div className='border p-3 bg-white rounded shadow'>
+            <div data-aos="fade-up" className='border p-3 bg-white rounded shadow'>
                 <h3>Computer Package</h3>
                  <img src={two} alt="" />
             </div>
 
-            <div className='border p-3 bg-white rounded shadow'>
+            <div data-aos="fade-down" className='border p-3 bg-white rounded shadow'>
                 <h3>All Laptop</h3>
                  <img src={three} alt="" />
             </div>
