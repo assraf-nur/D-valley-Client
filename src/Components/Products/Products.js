@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { CardGroup } from "react-bootstrap";
 import Product from "./Product";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,14 +12,23 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  useEffect(()=>{
+    Aos.init({
+      duration: 1000
+    });
+
+  },[])
+
   return (
-    <div className="container mt-3 text-center">
-      <h2> OUR PRODUCTS </h2>
-      <CardGroup className="mt-3 row gap-5">
-         {products.map((product) => (
+    <div className="container mt-3">
+      <h2 data-aos="fade-down" className="text-center mb-3 fw-bold"> OUR PRODUCTS </h2>
+      <div data-aos="fade-down-left" className="row container gap-5">
+      {
+      products.slice(0,6).map((product) => (
               <Product key={product._id} product={product}></Product>
             ))}
-      </CardGroup>
+      </div>
     </div>
   );
 };
