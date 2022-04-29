@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 const Product = ({ product }) => {
   const { name, price, img, des, quantity, supplier } = product;
