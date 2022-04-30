@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Inventories from "./Inventories";
 
 const ManageInventories = () => {
@@ -31,10 +32,12 @@ const ManageInventories = () => {
 
   return (
     <div className="container mt-3">
-      <h2 data-aos="fade-down" className="text-center mb-3 fw-bold">
-        {" "}
-        Manage Inventories{" "}
-      </h2>
+      <div className="d-flex justify-content-center mb-4">
+        <h2 data-aos="fade-down" className="mb-1 ms-5 fw-bold">
+          Manage Inventories
+        </h2>
+        <Link data-aos="fade-down" className="btn btn-dark fw-bold ms-auto me-5" to='/addProducts'>Add New Products</Link>
+      </div>
       <div data-aos="fade-down-left" className="row container gap-5">
         {products.map((product) => (
           <Card className="mx-auto shadow" style={{ width: "18rem" }}>
