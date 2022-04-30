@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 
 const Register = () => {
+    const [displayName, setDisplayName] = useState('');
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+      const [updateProfile, updating, error1] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
 
@@ -18,13 +20,15 @@ const Register = () => {
         navigate('/login')
     }
 
-    const handleRegister = e =>{
+    const handleRegister = async (e) =>{
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        createUserWithEmailAndPassword(email, password);
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({displayName});
+        alert('Profile Updated')
     }
     if(user){
         navigate('/home')
@@ -59,6 +63,9 @@ const Register = () => {
         }
         {
             loading && <p className="text-primary">Loading......</p>
+        }
+        {
+          updating && <p className="text-primary">Updating Profile..</p>
         }
     </Form>
   );
