@@ -13,12 +13,13 @@ const Header = () => {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" className="sticky-top" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to='/' href="#home">D-Valley</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
+          <Nav.Link as={Link} to='/home' href="#myProducts">Home</Nav.Link>
             {
               user?
               <Nav.Link as={Link} to='/manageInventory' href="#manage">Manage</Nav.Link>
@@ -27,7 +28,7 @@ const Header = () => {
             }
             {
               user?
-              <Nav.Link href="#addProducts">Add Product</Nav.Link>
+              <Nav.Link as={Link} to='/addProducts' href="#addProducts">Add Product</Nav.Link>
               :
               <></>
             }

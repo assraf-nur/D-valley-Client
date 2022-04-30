@@ -31,7 +31,7 @@ function App() {
         }/>
         <Route path='/manageInventory' element={<ManageInventories></ManageInventories>}/>
         <Route path='/inventories' element={<Inventories></Inventories>}/>
-        <Route path='/addProduct' element={<AddProducts></AddProducts>}/>
+        <Route path='/addProducts' element={<AddProducts></AddProducts>}/>
       </Routes>
     </div>
   );
