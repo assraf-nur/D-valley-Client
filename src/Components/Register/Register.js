@@ -53,7 +53,7 @@ const Register = () => {
         Register
       </Button>
 
-      <p className="mt-3">Already have an account ? <Link to='/login' onClick={navigateRegister} className="text-danger text-decoration-none">Login</Link> </p>
+      <p className="mt-3">Already have an account ? <Link to='/login' onClick={navigateRegister} className="text-primary fw-bold text-decoration-none">Login</Link> </p>
         {
             error && <p className="text-danger">Please give valid mail and password</p>
         }
