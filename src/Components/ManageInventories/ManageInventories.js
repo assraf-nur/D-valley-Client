@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Product from "./Product";
-import Aos from "aos";
-import "aos/dist/aos.css";
+import Inventories from "./Inventories";
 
-const Products = () => {
+const ManageInventories = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -12,25 +10,17 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-
-  useEffect(()=>{
-    Aos.init({
-      duration: 1000
-    });
-
-  },[])
-
   return (
     <div className="container mt-3">
-      <h2 data-aos="fade-down" className="text-center mb-3 fw-bold"> OUR PRODUCTS </h2>
+      <h2 data-aos="fade-down" className="text-center mb-3 fw-bold"> Manage Inventories </h2>
       <div data-aos="fade-down-left" className="row container gap-5">
       {
-      products.slice(0,6).map((product) => (
-              <Product key={product._id} product={product}></Product>
+      products.map((product) => (
+              <Inventories key={product._id} product={product}></Inventories>
             ))};
       </div>
     </div>
   );
 };
 
-export default Products;
+export default ManageInventories;
