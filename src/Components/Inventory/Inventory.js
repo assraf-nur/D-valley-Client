@@ -19,6 +19,28 @@ const Inventory = () => {
     console.log(product.quantity);
     // e.preventDefault();
     const quantity = parseInt(e.target.quantity.value) + parseInt(product.quantity);
+    alert(e.target.quantity.value + (` Added in the store`));
+
+    const updateProduct = {quantity};
+
+    const url = `http://localhost:5000/products/${id}`
+    fetch(url, {
+      method: "PUT",
+      headers:{
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProduct),
+    })
+    .then(res => res.json())
+    .then(data =>{
+        e.target.reset();
+    })
+  }
+
+  const handleDelivery = (e) =>{
+    alert("One product delivered")
+
+    const quantity = parseInt(product.quantity) - 1 ;
 
     const updateProduct = {quantity};
 
@@ -33,8 +55,8 @@ const Inventory = () => {
     .then(res => res.json())
     .then(data =>{
         alert('Updated Successfully');
-        e.target.reset();
     })
+
   }
 
   useEffect(()=>{
@@ -59,7 +81,9 @@ const Inventory = () => {
                 </p>
             </div>
             </div>
-            <button className="btn btn-success w-50 mx-auto mb-3">Delivered</button>
+            <form onSubmit={handleDelivery}  className="btn btn-success w-50 mx-auto mb-3" action="">
+              <input type="submit" value="Delivered" />
+            </form>
         </div>
         </div>
 
