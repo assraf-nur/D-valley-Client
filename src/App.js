@@ -13,6 +13,7 @@ import ManageInventories from './Components/ManageInventories/ManageInventories'
 import Inventories from './Components/ManageInventories/Inventories';
 import AddProducts from './Components/AddIProducts/AddProducts';
 import Blogs from './Components/Blogs/Blogs';
+import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/manageInventory' element={<ManageInventories></ManageInventories>}/>
         <Route path='/inventories' element={<Inventories></Inventories>}/>
         <Route path='/addProducts' element={<AddProducts></AddProducts>}/>
+        <Route path='*' element={<NotFound></NotFound>}/>
       </Routes>
     </div>
   );
