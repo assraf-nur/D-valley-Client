@@ -30,7 +30,7 @@ const AddProducts = () => {
     }
 
   return (
-    <Form onSubmit={handleAddProducts} className="w-50 mt-5 p-4 mx-auto border rounded-2xl shadow mt-1">
+    <Form onSubmit={handleAddProducts} className="w-50 mt-5 p-4 mx-auto border rounded-2xl shadow">
 
       <h2 className="text-center font-bold">Add Products</h2>
 

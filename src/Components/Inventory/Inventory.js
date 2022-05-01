@@ -15,6 +15,28 @@ const Inventory = () => {
       .then((data) => setProduct(data));
   }, [id]);
 
+  const handleQuantity = e =>{
+    console.log(product.quantity);
+    // e.preventDefault();
+    const quantity = parseInt(e.target.quantity.value) + parseInt(product.quantity);
+
+    const updateProduct = {quantity};
+
+    const url = `http://localhost:5000/products/${id}`
+    fetch(url, {
+      method: "PUT",
+      headers:{
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProduct),
+    })
+    .then(res => res.json())
+    .then(data =>{
+        alert('Updated Successfully');
+        e.target.reset();
+    })
+  }
+
   useEffect(()=>{
     Aos.init({
       duration: 1000
@@ -43,9 +65,9 @@ const Inventory = () => {
 
         <div data-aos="fade-down-right" className="d-flex">
 
-            <form className="border w-50 p-4 rounded shadow" action="">
+            <form onSubmit={handleQuantity} className="border w-50 p-4 rounded shadow" action="">
             <h3> <span className="text-danger">Restock</span> {product.name}</h3>
-                <input className="border p-1 px-5" type="number" name="restock" placeholder="How much you want to add"/>
+                <input className="border p-1 px-5" type="number" name="quantity" placeholder="How much you want to add"/>
 
                 <input className="btn btn-primary ms-2" type="submit" value="Add Product" />
                 
@@ -53,7 +75,7 @@ const Inventory = () => {
                     Current Quantity: {product.quantity}
                 </div>
             </form>
-            
+
             <div className="mx-auto rounded border mb-3 p-4 shadow">
                 <h3>Manage All Inventories</h3>
                 <Link to='/manageInventory'>
