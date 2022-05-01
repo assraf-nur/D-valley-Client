@@ -1,13 +1,21 @@
 import React from "react";
+import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
+  const emailRef = useRef('');
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+      auth
+    );
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +34,12 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
   };
 
+  const resetPassword = async () =>{
+    const email = emailRef.current.value;
+    await sendPasswordResetEmail(email);
+    toast('Sent email');
+}
+
   if (user) {
     navigate(from, {replace: true});
   }
@@ -39,6 +53,7 @@ const Login = () => {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
+          ref={emailRef}
           type="email"
           name="email"
           placeholder="Enter email"
@@ -65,19 +80,28 @@ const Login = () => {
         Login
       </Button>
       <p className="mt-3">
-        New to site ?{" "}
+        New to site ? 
         <Link
           to="/register"
           onClick={navigateRegister}
           className="text-danger fw-bold text-decoration-none"
         >
-          Register Now
-        </Link>{" "}
+           Register Now
+        </Link>
+      </p>
+      <p>Forget Password 
+      <button
+          onClick={resetPassword}
+          className="text-danger fw-bold btn"
+        >
+           Reset Your password
+        </button>
       </p>
       <br />
       {error && <p>User and password not found</p>}
       {loading && <p>Loading.....</p>}
       <SocialLogin></SocialLogin>
+      <ToastContainer />
     </Form>
   );
 };

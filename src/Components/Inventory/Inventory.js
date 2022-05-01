@@ -16,8 +16,10 @@ const Inventory = () => {
   }, [id]);
 
   const handleQuantity = e =>{
-    console.log(product.quantity);
     // e.preventDefault();
+    if(e.target.quantity.value === isNaN){
+      return;
+    }
     const quantity = parseInt(e.target.quantity.value) + parseInt(product.quantity);
     alert(e.target.quantity.value + (` Added in the store`));
 
@@ -54,7 +56,7 @@ const Inventory = () => {
     })
     .then(res => res.json())
     .then(data =>{
-        alert('Updated Successfully');
+        
     })
 
   }
@@ -77,7 +79,7 @@ const Inventory = () => {
             <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">Configuration: <span className="fw-bold">{product.des}</span> <br /> Product ID: 
-                <span className="fw-bold"> {product._id}</span> <br /> Price: <span className="fw-bold"> {product.price}$</span> <br /> Quantity: <span className="fw-bold">{product.quantity} Unit</span> <br /> Supplier: <span className="fw-bold">{product.supplier}</span> <br /> Status: <span>....</span>
+                <span className="fw-bold"> {product._id}</span> <br /> Price: <span className="fw-bold"> {product.price}$</span> <br /> Quantity: <span className="fw-bold">{product.quantity <=0 ? <>Get product</> : <>{product.quantity} </>} Unit</span> <br /> Supplier: <span className="fw-bold">{product.supplier}</span> <br /> Status: <span> {product.quantity <= 0 ? <>Out of stock</> : <>{product.quantity} Unit in the stock</> } </span>
                 </p>
             </div>
             </div>
@@ -96,7 +98,7 @@ const Inventory = () => {
                 <input className="btn btn-primary ms-2" type="submit" value="Add Product" />
                 
                 <div className="fw-bold">
-                    Current Quantity: {product.quantity}
+                    Current Quantity: {product.quantity <= 0 ? <>Out of stock</> : <>{product.quantity} Unit in the stock</> }
                 </div>
             </form>
 

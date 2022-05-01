@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import SocialLogin from "../Login/SocialLogin";
 
 const Register = () => {
     const [displayName, setDisplayName] = useState('');
@@ -67,6 +68,8 @@ const Register = () => {
         {
           updating && <p className="text-primary">Updating Profile..</p>
         }
+        <hr />
+        <SocialLogin></SocialLogin>
     </Form>
   );
 };
