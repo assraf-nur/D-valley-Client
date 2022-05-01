@@ -83,8 +83,8 @@ const Inventory = () => {
                 </p>
             </div>
             </div>
-            <form onSubmit={handleDelivery}  className="btn btn-success w-50 mx-auto mb-3" action="">
-              <input type="submit" value="Delivered" />
+            <form className="d-flex" onSubmit={handleDelivery} action="">
+              <input className="w-50 btn btn-success mx-auto mb-3" type="submit" value="Delivered" />
             </form>
         </div>
         </div>
