@@ -1,11 +1,14 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const AddProducts = () => {
-
+    const [user] = useAuthState(auth);
     const handleAddProducts = (e) =>{
         e.preventDefault();
 
+        const email = user.email;
         const name = e.target.name.value;
         const img = e.target.img.value;
         const price = e.target.price.value;
@@ -13,7 +16,7 @@ const AddProducts = () => {
         const supplier = e.target.supplier.value;
         const quantity = e.target.quantity.value;
 
-        const products = {name, img, price, supplier, quantity, des};
+        const products = {email, name, img, price, supplier, quantity, des};
 
         fetch('http://localhost:5000/products',{
             method: 'POST',
@@ -33,6 +36,7 @@ const AddProducts = () => {
     <Form onSubmit={handleAddProducts} className="w-50 mt-5 p-4 mx-auto border rounded-2xl shadow">
 
       <h2 className="text-center font-bold">Add Products</h2>
+      <p className="text-center bg-dark text-light rounded-2xl">Products are stored in <span className="text-light fw-bold">{user.email}</span> account</p>
 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Control type="text" name="name" placeholder="Name" required />
