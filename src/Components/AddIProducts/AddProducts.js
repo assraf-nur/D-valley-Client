@@ -8,7 +8,7 @@ const AddProducts = () => {
   const handleAddProducts = (e) => {
     e.preventDefault();
 
-    const email = user.email;
+    const email = e.user.email;
     const name = e.target.name.value;
     const img = e.target.img.value;
     const price = e.target.price.value;
