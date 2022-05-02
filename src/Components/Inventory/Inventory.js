@@ -17,10 +17,10 @@ const Inventory = () => {
 
   const handleQuantity = (e) => {
     // e.preventDefault();
-    const currentQuantity = parseInt(e.target.quantity.value) + parseInt(product.quantity);
+    const currentQuantity = parseFloat(e.target.quantity.value) + parseFloat(product.quantity);
     alert(e.target.quantity.value + ` Added in the store`);
 
-    const quantity = parseInt(currentQuantity)
+    const quantity = parseFloat(currentQuantity)
 
     const updateProduct = { quantity };
 
@@ -41,9 +41,9 @@ const Inventory = () => {
   const handleDelivery = (e) => {
     alert("One product delivered");
 
-    const currentQuantity = parseInt(product.quantity) - 1;
+    const currentQuantity = parseFloat(product.quantity) - 1;
 
-    const quantity = parseInt(currentQuantity);
+    const quantity = parseFloat(currentQuantity);
     const updateProduct = { quantity };
 
     const url = `https://tranquil-shore-78244.herokuapp.com/products/${id}`;
