@@ -17,8 +17,7 @@ const Inventory = () => {
 
   const handleQuantity = (e) => {
     // e.preventDefault();
-    const quantityInput = e.target.quantity.value;
-    const quantity = parseInt(quantityInput) + parseInt(product.quantity);
+    const quantity = parseInt(e.target.quantity.value) + parseInt(product.quantity);
     alert(e.target.quantity.value + ` Added in the store`);
 
     const updateProduct = { quantity };
