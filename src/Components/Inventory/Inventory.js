@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Aos from "aos";
-import "aos/dist/aos.css";
 
 const Inventory = () => {
   const { id } = useParams();
@@ -60,16 +58,11 @@ const Inventory = () => {
       });
   };
 
-  useEffect(() => {
-    Aos.init({
-      duration: 1000,
-    });
-  }, []);
 
   return (
     <div className="container mt-2">
       <h2 className="text-center">Inventory</h2>
-      <div data-aos="fade-down-left" className="card shadow rounded mb-3 mt-2">
+      <div className="card shadow rounded mb-3 mt-2">
         <div className="row g-1">
           <div className="col-md-3">
             <img className="w-100" src={product.img} alt="" />
@@ -115,7 +108,7 @@ const Inventory = () => {
         </div>
       </div>
 
-      <div data-aos="fade-down-right" className="d-flex">
+      <div className="d-flex">
         <form
           onSubmit={handleQuantity}
           className="border w-50 p-4 rounded shadow"
