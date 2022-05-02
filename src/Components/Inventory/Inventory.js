@@ -15,7 +15,7 @@ const Inventory = () => {
 
   const handleQuantity = (e) => {
     const currentQuantity = parseFloat(e.target.quantity.value) + parseFloat(product.quantity);
-    alert(e.target.quantity.value + ` Added in the store`);
+    alert(e.target.quantity.value + ` Added in the store, If product quantity does not update please try again.`);
 
     const quantity = currentQuantity;
 
@@ -27,18 +27,16 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.parse({updateProduct}),
+      body: JSON.stringify(updateProduct),
     })
       .then((res) => res.json())
       .then((data) => {
-        setProduct(data)
-        e.target.reset()
-      })
-      .then(setProduct);
+        e.target.reset();
+      });
   };
 
   const handleDelivery = ( ) => {
-    alert("One product delivered");
+    alert("One product delivered. If product quantity does not update please try again.");
 
     const currentQuantity2 = parseFloat(product.quantity) - 1;
 
@@ -51,11 +49,12 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.parse({updateProduct}),
+      body: JSON.stringify(updateProduct),
     })
       .then((res) => res.json())
-      .then((data) => setProduct(data))
-      .then(setProduct);
+      .then((data) => {
+        
+      });
   };
 
 
