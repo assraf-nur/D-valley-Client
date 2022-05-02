@@ -25,6 +25,9 @@ const Experts = () => {
           <Card.Text>
             CO founder of pc builders bangladesh. 10 Years of experience in international field.
           </Card.Text>
+          <Card.Footer>
+          <a className="btn w-100 btn-dark" href="https://www.facebook.com/ananya.zaman" target={'_blank'}>Contact</a>
+          </Card.Footer>
         </Card.Body>
       </Card>
 
@@ -33,8 +36,11 @@ const Experts = () => {
         <Card.Body>
           <Card.Title>Nur Tesla</Card.Title>
           <Card.Text>
-            CEO of logismico tech. Have the international PC assembly experience.
+            CEO of logismico tech. Have the international PC assembly experience. Now he is working in Avengers.
           </Card.Text>
+          <Card.Footer>
+            <a className="btn w-100 btn-dark" href="https://www.facebook.com/assrafnur/" target={'_blank'}>Contact</a>
+          </Card.Footer>
         </Card.Body>
       </Card>
       </div>
