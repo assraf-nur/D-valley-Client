@@ -10,11 +10,7 @@ const MyProducts = () => {
   useEffect(() => {
     const email = user.email;
     const url = `https://tranquil-shore-78244.herokuapp.com/myProducts?email=${email}`;
-    fetch(url, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [user]);
