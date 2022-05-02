@@ -41,7 +41,7 @@ const AddProducts = () => {
       <h2 className="text-center font-bold">Add Products</h2>
       <p className="text-center bg-dark text-light rounded-2xl">
         Products are stored in
-        <span className="text-light fw-bold"> {user.email}</span> account
+        <span className="text-light fw-bold"> <br />{user.displayName} <br /></span> account
       </p>
 
       <Form.Group className="mb-3" controlId="formBasicName">
