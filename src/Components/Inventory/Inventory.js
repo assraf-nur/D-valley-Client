@@ -27,7 +27,7 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(updateProduct),
+      body: JSON.parse(updateProduct),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -50,7 +50,7 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(updateProduct),
+      body: JSON.parse(updateProduct),
     })
       .then((res) => res.json())
       .then((data) => {
