@@ -10,13 +10,13 @@ const Footer = () => {
             <p>All copyright ©️ reserved to D-valley</p>
             <h5>Connect With us</h5>
             <div className='d-flex justify-center mt-2 gap-3'>
-                <a href="https://www.facebook.com/assrafnur/">
+                <a href="https://www.facebook.com/assrafnur/" target={'_blank'}>
                     <img src={fb} alt="" />
                 </a>
-                <a href="https://www.instagram.com/tesla_nur/?hl=en">
+                <a href="https://www.instagram.com/tesla_nur/?hl=en" target={'_blank'}>
                    <img src={insta} alt="" />
                 </a>
-                <a href="https://github.com/assraf-nur">
+                <a href="https://github.com/assraf-nur" target={'_blank'}>
                    <img src={git} alt="" />
                 </a>
             </div>

@@ -6,28 +6,28 @@ const ManageInventories = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/products`;
+    const url = `https://tranquil-shore-78244.herokuapp.com/products`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
-  const handleDeleteProduct  = id =>{
+  const handleDeleteProduct = (id) => {
     const proceed = window.confirm("Are you really want to delete ?");
-    if(proceed){
-      const url = `http://localhost:5000/products/${id}`;
+    if (proceed) {
+      const url = `https://tranquil-shore-78244.herokuapp.com/products/${id}`;
       fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
       })
-      .then(res => res.json())
-      .then(data =>{
-         if(data.deletedCount > 0){
-           const remaining = products.filter(product => product._id !== id);
-           setProducts(remaining);
-         }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const remaining = products.filter((product) => product._id !== id);
+            setProducts(remaining);
+          }
+        });
     }
-  }
+  };
 
   return (
     <div className="container mt-3">
@@ -35,17 +35,27 @@ const ManageInventories = () => {
         <h2 data-aos="fade-down" className="mb-1 ms-5 fw-bold">
           Manage Inventories
         </h2>
-        <Link data-aos="fade-down" className="btn btn-dark fw-bold ms-auto me-5" to='/addProducts'>Add New Products</Link>
+        <Link
+          data-aos="fade-down"
+          className="btn btn-dark fw-bold ms-auto me-5"
+          to="/addProducts"
+        >
+          Add New Products
+        </Link>
       </div>
       <div data-aos="fade-down-left" className="row container gap-5">
         {products.map((product) => (
           <Card className="mx-auto shadow" style={{ width: "18rem" }}>
-            <Card.Img className="p-3 w-50 mx-auto" variant="top" src={product.img} />
+            <Card.Img
+              className="p-3 w-50 mx-auto"
+              variant="top"
+              src={product.img}
+            />
             <Card.Body className="border rounded shadow-sm">
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>
-                <span className="fw-bold">Supplier: {product.supplier}</span> <br />{" "}
-                <span>Quantity: {product.quantity}</span>
+                <span className="fw-bold">Supplier: {product.supplier}</span>{" "}
+                <br /> <span>Quantity: {product.quantity}</span>
               </Card.Text>
             </Card.Body>
             <button

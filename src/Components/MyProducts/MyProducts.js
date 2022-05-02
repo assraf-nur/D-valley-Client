@@ -9,7 +9,7 @@ const MyProducts = () => {
 
   useEffect(() => {
     const email = user.email;
-    const url = `http://localhost:5000/myProducts?email=${email}`;
+    const url = `https://tranquil-shore-78244.herokuapp.com/myProducts?email=${email}`;
     fetch(url, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -22,7 +22,7 @@ const MyProducts = () => {
   const handleDeleteProduct = (id) => {
     const proceed = window.confirm("Are you really want to delete ?");
     if (proceed) {
-      const url = `http://localhost:5000/products/${id}`;
+      const url = `https://tranquil-shore-78244.herokuapp.com/products/${id}`;
       fetch(url, {
         method: "DELETE",
       })

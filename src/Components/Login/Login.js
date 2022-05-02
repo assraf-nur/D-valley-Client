@@ -1,51 +1,54 @@
 import React from "react";
 import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "./SocialLogin";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-
 const Login = () => {
-  const emailRef = useRef('');
+  const emailRef = useRef("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
-      auth
-    );
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  let from = location.state?.from?.pathname || '/'
+  let from = location.state?.from?.pathname || "/";
 
   const navigateRegister = () => {
     navigate("/register");
   };
 
-  const handleLogin = async e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     await signInWithEmailAndPassword(email, password);
-    const {data} = await axios.post('http://localhost:5000/login', {email});
-    localStorage.setItem('accessToken', data.accessToken);
-    navigate(from, {replace: true});
+    const { data } = await axios.post(
+      "https://tranquil-shore-78244.herokuapp.com/login",
+      { email }
+    );
+    localStorage.setItem("accessToken", data.accessToken);
+    navigate(from, { replace: true });
   };
 
-  const resetPassword = async () =>{
+  const resetPassword = async () => {
     const email = emailRef.current.value;
     await sendPasswordResetEmail(email);
-    toast('Sent email');
-}
+    toast("Sent email");
+  };
 
   if (user) {
-    navigate(from, {replace: true});
+    navigate(from, { replace: true });
   }
 
   return (
@@ -84,21 +87,19 @@ const Login = () => {
         Login
       </Button>
       <p className="mt-3">
-        New to site ? 
+        New to site ?
         <Link
           to="/register"
           onClick={navigateRegister}
           className="text-danger fw-bold text-decoration-none"
         >
-           Register Now
+          Register Now
         </Link>
       </p>
-      <p>Forget Password 
-      <button
-          onClick={resetPassword}
-          className="text-danger fw-bold btn"
-        >
-           Reset Your password
+      <p>
+        Forget Password
+        <button onClick={resetPassword} className="text-danger fw-bold btn">
+          Reset Your password
         </button>
       </p>
       <br />
