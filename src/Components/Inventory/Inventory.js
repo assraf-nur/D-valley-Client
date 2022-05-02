@@ -27,13 +27,14 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.parse(updateProduct),
+      body: JSON.stringify(updateProduct),
     })
       .then((res) => res.json())
       .then((data) => {
         setProduct(data)
-        e.target.reset();
-      });
+        e.target.reset()
+      })
+      .then(setProduct);
   };
 
   const handleDelivery = ( ) => {
@@ -50,12 +51,11 @@ const Inventory = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.parse(updateProduct),
+      body: JSON.stringify(updateProduct),
     })
       .then((res) => res.json())
-      .then((data) => {
-        setProduct(data)
-      });
+      .then((data) => setProduct(data))
+      .then(setProduct);
   };
 
 
