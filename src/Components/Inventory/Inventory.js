@@ -38,7 +38,7 @@ const Inventory = () => {
       });
   };
 
-  const handleDelivery = (e) => {
+  const handleDelivery = ( ) => {
     alert("One product delivered");
 
     const currentQuantity = parseFloat(product.quantity) - 1;
