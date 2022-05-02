@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# D-valley
+Live host link [D-valley](https://d-valley-2a581.web.app/).
+
+## Features of D-valley
+* User can add product
+* User can delivered product
+* Have the ability to increase and decrease quantity
+* DataBase connected
+* Each user can see what he add
+* JWT token is used for security 
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
