@@ -34,6 +34,7 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setProduct(data)
         e.target.reset();
       });
   };
@@ -55,7 +56,9 @@ const Inventory = () => {
       body: JSON.stringify(updateProduct),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        setProduct(data)
+      });
   };
 
   useEffect(() => {
