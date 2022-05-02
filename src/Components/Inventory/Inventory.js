@@ -16,7 +16,7 @@ const Inventory = () => {
   }, [id]);
 
   const handleQuantity = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const currentQuantity = parseFloat(e.target.quantity.value) + parseFloat(product.quantity);
     alert(e.target.quantity.value + ` Added in the store`);
 
@@ -40,6 +40,7 @@ const Inventory = () => {
   };
 
   const handleDelivery = (e) => {
+    e.preventDefault();
     alert("One product delivered");
 
     const currentQuantity = parseFloat(product.quantity) - 1;
