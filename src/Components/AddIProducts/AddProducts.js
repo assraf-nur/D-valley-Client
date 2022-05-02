@@ -5,10 +5,11 @@ import auth from "../../firebase.init";
 
 const AddProducts = () => {
   const [user] = useAuthState(auth);
+  const userEmail = user.email;
   const handleAddProducts = (e) => {
     e.preventDefault();
 
-    const email = e.user.email;
+    const email = userEmail;
     const name = e.target.name.value;
     const img = e.target.img.value;
     const price = e.target.price.value;
