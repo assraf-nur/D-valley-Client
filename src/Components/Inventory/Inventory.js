@@ -31,7 +31,7 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setProduct(data.product.quantity)
+        console.log('success', data);
         e.target.reset();
       });
   };
@@ -54,7 +54,7 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setProduct(data.product.quantity)
+        console.log('success', data);
       });
   };
 
