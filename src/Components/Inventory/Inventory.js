@@ -3,7 +3,17 @@ import { Link, useParams } from "react-router-dom";
 
 const Inventory = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
+  const [quantity, setQuantity] = useState([]);
+
+  useEffect(() => {
+    const url = `https://tranquil-shore-78244.herokuapp.com/products/${id}`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setQuantity(data.quantity));
+  }, [id]);
+
 
   useEffect(() => {
     const url = `https://tranquil-shore-78244.herokuapp.com/products/${id}`;
@@ -14,6 +24,7 @@ const Inventory = () => {
   }, [id]);
 
   const handleQuantity = (e) => {
+    e.preventDefault();
     const currentQuantity = parseFloat(e.target.quantity.value) + parseFloat(product.quantity);
     alert(e.target.quantity.value + ` Added in the store, If product quantity does not update please try again.`);
 
@@ -31,12 +42,18 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.updateCount > 0) {
+          const remaining = product.filter((product) => product._id !== id);
+          setQuantity(remaining);
+        }
         console.log('success', data);
         e.target.reset();
+        window.location.reload()
       });
   };
 
-  const handleDelivery = ( ) => {
+  const handleDelivery = (e) => {
+    e.preventDefault();
     alert("One product delivered. If product quantity does not update please try again.");
 
     const currentQuantity2 = parseFloat(product.quantity) - 1;
@@ -54,7 +71,12 @@ const Inventory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.updateCount > 0) {
+          const remaining = product.filter((product) => product._id !== id);
+          setQuantity(remaining);
+        }
         console.log('success', data);
+        window.location.reload()
       });
   };
 
@@ -77,10 +99,10 @@ const Inventory = () => {
                 <span className="fw-bold"> {product.price}$</span> <br />{" "}
                 Quantity:{" "}
                 <span className="fw-bold">
-                  {product.quantity <= 0 ? (
+                  {quantity <= 0 ? (
                     <>Get product</>
                   ) : (
-                    <>{product.quantity} </>
+                    <>{quantity} </>
                   )}{" "}
                   Unit
                 </span>{" "}
@@ -89,10 +111,10 @@ const Inventory = () => {
                 Status:{" "}
                 <span>
                   {" "}
-                  {product.quantity <= 0 ? (
+                  {quantity <= 0 ? (
                     <>Out of stock</>
                   ) : (
-                    <>{product.quantity} Unit in the stock</>
+                    <>{quantity} Unit in the stock</>
                   )}{" "}
                 </span>
               </p>
